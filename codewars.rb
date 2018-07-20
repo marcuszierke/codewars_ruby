@@ -236,19 +236,19 @@ def find_next_square(sq)
 end
 
 def find_pattern(arr)
+  #retuns the pattern of performed calculations within an array (6kyu)
   pattern = []
+  counter = 1
   (1...arr.length).to_a.each do |item|
     pattern << (arr[item] - arr[item - 1])
   end
-  pattern
-  #pattern == pattern[0...pattern.length / 2]
+  simple_pattern = pattern.each_slice(counter).to_a
+  while simple_pattern != simple_pattern.select { |arr| arr == simple_pattern[0] }
+    counter += 1
+    simple_pattern = pattern.each_slice(counter).to_a
+  end
+  simple_pattern[0]
 end
-
-p find_pattern([1, 2, 3, 4, 5]) # [1])
-p find_pattern([1, 2, 3, 4, 5, 4, 3, 2, 1, 2, 3, 4, 5, 4, 3, 2, 1]) # [1, 1, 1, 1, -1, -1, -1, -1])
-p find_pattern([1, 5, 2, 3, 1, 5, 2, 3, 1]) # [4, -3, 1, -2])
-p find_pattern([1, 5, 4, 8, 7, 11, 10, 14, 13]) # [4, -1])
-p find_pattern([0, 1]) # [1])
 
 
 
