@@ -224,10 +224,31 @@ def rgb(r, g, b)
   rgb_to_hex(arr)
 end
 
-p rgb(188, 255, 0)
-p rgb(188, 300, 0)
-p rgb(188, 255, -20)
+def feast(beast, dish)
+  #checks if the first and last letter of beast match with first and last letter of dish (8kyu)
+  beast[0] == dish[0] && beast[-1] == dish[-1] 
+end
 
+def find_next_square(sq)
+  #finds the next square of sq if sq is a perfect sqaure. -1 otherwise (7kyu)
+  base = sq**0.5
+  base % 1 != 0 ? -1 : (base + 1)**2  
+end
+
+def find_pattern(arr)
+  pattern = []
+  (1...arr.length).to_a.each do |item|
+    pattern << (arr[item] - arr[item - 1])
+  end
+  pattern
+  #pattern == pattern[0...pattern.length / 2]
+end
+
+p find_pattern([1, 2, 3, 4, 5]) # [1])
+p find_pattern([1, 2, 3, 4, 5, 4, 3, 2, 1, 2, 3, 4, 5, 4, 3, 2, 1]) # [1, 1, 1, 1, -1, -1, -1, -1])
+p find_pattern([1, 5, 2, 3, 1, 5, 2, 3, 1]) # [4, -3, 1, -2])
+p find_pattern([1, 5, 4, 8, 7, 11, 10, 14, 13]) # [4, -1])
+p find_pattern([0, 1]) # [1])
 
 
 
