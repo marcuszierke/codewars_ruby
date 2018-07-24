@@ -250,6 +250,17 @@ def find_pattern(arr)
   simple_pattern[0]
 end
 
+def permutations(string)
+  #returns an array of all unique permutations of a given string (4kyu)
+  #I am aware that there is a .permutation built-in function but I guess that's not worth 4kyu
+  return [string] if string.size < 2
+  ch = string[0]
+  final = permutations(string[1..-1]).each_with_object([]) do |perm, result|
+    (0..perm.size).each { |i| result << perm.dup.insert(i,ch) }
+  end
+  final.uniq
+end
+
 
 
 
